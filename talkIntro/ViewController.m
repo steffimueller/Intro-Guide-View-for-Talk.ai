@@ -60,7 +60,7 @@
     
     //set scrollview
     self.scrollView.contentSize = CGSizeMake(NUMBER_OF_PAGES * CGRectGetWidth(self.view.frame),
-                                              CGRectGetHeight(self.view.frame));
+                                             CGRectGetHeight(self.view.frame));
     self.scrollView.bounces = NO;
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
@@ -106,7 +106,7 @@
 - (void)placeViewsOnPage1
 {
     UIImageView *titleView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Title1CN"]];
-    [self.scrollView addSubview:titleView1];
+    [self.view addSubview:titleView1];
     self.titleView1 = titleView1;
     [self.titleView1 setCenter:CGPointMake(self.view.center.x, 0)];
     
@@ -129,10 +129,10 @@
 - (void)placeViewsOnPage2
 {
     UIImageView *titleView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Title2CN"]];
-    [self.scrollView addSubview:titleView2];
+    [self.view addSubview:titleView2];
     self.titleView2 = titleView2;
     
-    [self.titleView2 setCenter:CGPointMake(self.view.center.x + timeForPage(4), 0)];//out of the screen
+    [self.titleView2 setCenter:CGPointMake(self.view.center.x, 0)];//out of the screen
     
     UIImageView *searchField = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SearchField"]];
     [self.scrollView addSubview:searchField];
@@ -153,10 +153,10 @@
 - (void)placeViewsOnPage3
 {
     UIImageView *titleView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Title3CN"]];
-    [self.scrollView addSubview:titleView3];
+    [self.view addSubview:titleView3];
     self.titleView3 = titleView3;
     
-    [self.titleView3 setCenter:CGPointMake(self.view.center.x + timeForPage(3), 0)];
+    [self.titleView3 setCenter:CGPointMake(self.view.center.x, 0)];
     
     UIImageView *categoryIcon = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CategoryIcon"]];
     [self.scrollView addSubview:categoryIcon];
@@ -172,10 +172,10 @@
 - (void)placeViewsOnPage4
 {
     UIImageView *titleView4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Title4CN"]];
-    [self.scrollView addSubview:titleView4];
+    [self.view addSubview:titleView4];
     self.titleView4 = titleView4;
     
-    [self.titleView4 setCenter:CGPointMake(self.view.center.x + timeForPage(4), 0)];
+    [self.titleView4 setCenter:CGPointMake(self.view.center.x, 0)];
     
     UIImageView *teamColor = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"TeamColor"]];
     [self.scrollView addSubview:teamColor];
@@ -224,20 +224,6 @@
 
 - (void)configurePage1Animation
 {
-    //titleView frame animation
-    IFTTTFrameAnimation *titleView1FrameAnimation = [IFTTTFrameAnimation new];
-    titleView1FrameAnimation.view = self.titleView1;
-    [self.animator addAnimation:titleView1FrameAnimation];
-    
-    [titleView1FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                                    andFrame:self.titleView1.frame]];
-    [titleView1FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                           andFrame:CGRectOffset(self.titleView1.frame, timeForPage(2), 0)]];
-    [titleView1FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                           andFrame:CGRectOffset(self.titleView1.frame, timeForPage(3), 0)]];
-    [titleView1FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(4)
-                                                                           andFrame:CGRectOffset(self.titleView1.frame, timeForPage(4), 0)]];
-    
     //titleView alpha animation
     IFTTTAlphaAnimation *titleView1AlphaAnimation = [IFTTTAlphaAnimation new];
     titleView1AlphaAnimation.view = self.titleView1;
@@ -251,9 +237,9 @@
     myVoiceFrameAnimation.view = self.myVoice;
     [self.animator addAnimation:myVoiceFrameAnimation];
     [myVoiceFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                              andFrame:self.myVoice.frame]];
+                                                                           andFrame:self.myVoice.frame]];
     [myVoiceFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                              andFrame:CGRectOffset(self.myVoice.frame, timeForPage(3), 0)]];
+                                                                           andFrame:CGRectOffset(self.myVoice.frame, timeForPage(3), 0)]];
     //hide
     IFTTTHideAnimation *myVoiceHideAnimation = [[IFTTTHideAnimation alloc] initWithView:self.myVoice hideAt:timeForPage(2)];
     [self.animator addAnimation:myVoiceHideAnimation];
@@ -263,9 +249,9 @@
     redPointFrameAnimation.view = self.redPoint;
     [self.animator addAnimation:redPointFrameAnimation];
     [redPointFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                           andFrame:self.redPoint.frame]];
+                                                                            andFrame:self.redPoint.frame]];
     [redPointFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                           andFrame:self.pdfIcon.frame]];
+                                                                            andFrame:self.pdfIcon.frame]];
     
     //redPoint alpha animation
     IFTTTAlphaAnimation *redPointAlphaAnimation = [IFTTTAlphaAnimation new];
@@ -279,20 +265,6 @@
 
 - (void)configurePage2Animation
 {
-    //titleView frame animation
-    IFTTTFrameAnimation *titleView2FrameAnimation = [IFTTTFrameAnimation new];
-    titleView2FrameAnimation.view = self.titleView2;
-    [self.animator addAnimation:titleView2FrameAnimation];
-    
-    [titleView2FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                              andFrame:self.titleView1.frame]];
-    [titleView2FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(2), 0)]];
-    [titleView2FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(3), 0)]];
-    [titleView2FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(4)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(4), 0)]];
-    
     //titleView alpha animation
     IFTTTAlphaAnimation *titleView2AlphaAnimation = [IFTTTAlphaAnimation new];
     titleView2AlphaAnimation.view = self.titleView2;
@@ -317,20 +289,20 @@
     [self.animator addAnimation:searchResultFrameAnimation];
     
     [searchResultFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                              andFrame:self.searchResult.frame]];
+                                                                                andFrame:self.searchResult.frame]];
     [searchResultFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                              andFrame:CGRectOffset(self.searchResult.frame, 0, -self.view.frame.size.height/2)]];
+                                                                                andFrame:CGRectOffset(self.searchResult.frame, 0, -self.view.frame.size.height/2)]];
     [searchResultFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                              andFrame:self.searchResult.frame]];
+                                                                                andFrame:self.searchResult.frame]];
     
     //pdfIcon frame animation
     IFTTTFrameAnimation *pdfIconFrameAnimation = [IFTTTFrameAnimation new];
     pdfIconFrameAnimation.view = self.pdfIcon;
     [self.animator addAnimation:pdfIconFrameAnimation];
     [pdfIconFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                            andFrame:self.redPoint.frame]];
+                                                                           andFrame:self.redPoint.frame]];
     [pdfIconFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                            andFrame:self.pdfIcon.frame]];
+                                                                           andFrame:self.pdfIcon.frame]];
     [pdfIconFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
                                                                            andFrame:self.categoryIcon.frame]];
     
@@ -346,20 +318,6 @@
 
 - (void)configurePage3Animation
 {
-    //titleView frame animation
-    IFTTTFrameAnimation *titleView3FrameAnimation = [IFTTTFrameAnimation new];
-    titleView3FrameAnimation.view = self.titleView3;
-    [self.animator addAnimation:titleView3FrameAnimation];
-    
-    [titleView3FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                              andFrame:self.titleView1.frame]];
-    [titleView3FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(2), 0)]];
-    [titleView3FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(3), 0)]];
-    [titleView3FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(4)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(4), 0)]];
-    
     //titleView alpha animation
     IFTTTAlphaAnimation *titleView3AlphaAnimation = [IFTTTAlphaAnimation new];
     titleView3AlphaAnimation.view = self.titleView3;
@@ -404,27 +362,13 @@
     [self.animator addAnimation:categoryItemsFrameAnimation];
     
     [categoryItemsFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                                andFrame:self.categoryItems.frame]];
+                                                                                 andFrame:self.categoryItems.frame]];
     [categoryItemsFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                                andFrame:CGRectOffset(self.categoryItems.frame, timeForPage(2), self.categoryItems.frame.size.height)]];
+                                                                                 andFrame:CGRectOffset(self.categoryItems.frame, timeForPage(2), self.categoryItems.frame.size.height)]];
 }
 
 - (void)configurePage4Animation
 {
-    //titleView frame animation
-    IFTTTFrameAnimation *titleView4FrameAnimation = [IFTTTFrameAnimation new];
-    titleView4FrameAnimation.view = self.titleView4;
-    [self.animator addAnimation:titleView4FrameAnimation];
-    
-    [titleView4FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(1)
-                                                                              andFrame:self.titleView1.frame]];
-    [titleView4FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(2)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(2), 0)]];
-    [titleView4FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(3), 0)]];
-    [titleView4FrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(4)
-                                                                              andFrame:CGRectOffset(self.titleView1.frame, timeForPage(4), 0)]];
-    
     //titleView alpha animation
     IFTTTAlphaAnimation *titleView4AlphaAnimation = [IFTTTAlphaAnimation new];
     titleView4AlphaAnimation.view = self.titleView4;
@@ -438,9 +382,9 @@
     greenPointFrameAnimation.view = self.greenPoint;
     [self.animator addAnimation:greenPointFrameAnimation];
     [greenPointFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(3)
-                                                                            andFrame:self.categoryIcon.frame]];
+                                                                              andFrame:self.categoryIcon.frame]];
     [greenPointFrameAnimation addKeyFrame:[[IFTTTAnimationKeyFrame alloc] initWithTime:timeForPage(4)
-                                                                            andFrame:self.greenPoint.frame]];
+                                                                              andFrame:self.greenPoint.frame]];
     
     //greenPoint alpha animation
     IFTTTAlphaAnimation *greenPointAlphaAnimation = [IFTTTAlphaAnimation new];
@@ -468,8 +412,6 @@
 #pragma mark - ScrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
-    [super scrollViewDidScroll:self.scrollView];
-    
     //set pageControl
     int pageIndex = 0;
     CGFloat pageWidth = self.scrollView.frame.size.width;
@@ -491,6 +433,8 @@
         [self.pageControl setHidden:YES];
     }
     [self.pageControl setCurrentPage:pageIndex];
+    
+    [super scrollViewDidScroll:self.scrollView];
 }
 
 #pragma mark - IFTTTAnimatedScrollViewControllerDelegate
